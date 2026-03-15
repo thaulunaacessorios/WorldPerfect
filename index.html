@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>World Perfect — Personalizados</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bl:#6eaee7;--bl2:#d6ecfa;
+  --pu:#7b3fb5;--pu2:#e0f0fb;
+  --bg:#eef7ff;--sf:#fafcff;
+  --bd:#dde8f4;--tx:#12121e;
+  --t2:#5a5a78;--t3:#9898b4;
+}
+[data-theme="dark"]{
+  --bl:#89c3f5;--bl2:#1a2d42;
+  --pu:#b07fe8;--pu2:#21173a;
+  --bg:#0b0d14;--sf:#111520;
+  --bd:#1c2338;--tx:#e8eeff;
+  --t2:#8890b8;--t3:#404870;
+}
+[data-theme="dark"] body{
+  background-image: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(110,174,231,0.04) 0%, transparent 60%),
+                    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(176,127,232,0.04) 0%, transparent 60%);
+}
+[data-theme="dark"] .products,[data-theme="dark"] .how,[data-theme="dark"] .contact{ background: #0e1119; }
+[data-theme="dark"] .about,[data-theme="dark"] .testi{ background: var(--bg); }
+[data-theme="dark"] .pi:hover{ background: #151a2a; }
+[data-theme="dark"] .t-card{ background: #111520; border-color: #1c2338; box-shadow: 0 4px 24px rgba(0,0,0,.25); }
+[data-theme="dark"] .t-card:hover{ border-color: rgba(137,195,245,0.2); }
+[data-theme="dark"] .pg{ background: #1c2338; border-color: #1c2338; }
+[data-theme="dark"] .pi{ background: #111520; }
+[data-theme="dark"] .step{ border-color: #1c2338; }
+[data-theme="dark"] .a-qt{ border-color: var(--pu); color: var(--t2); }
+[data-theme="dark"] .a-st{ background: #111520; border-color: #1c2338; }
+[data-theme="dark"] .c-row{ border-color: #1c2338; }
+[data-theme="dark"] .ncta{ background: var(--bl); color: #0b0d14; }
+[data-theme="dark"] .ncta:hover{ opacity: .85; }
+[data-theme="dark"] .btn-f{ background: var(--bl); color: #0b0d14; }
+[data-theme="dark"] .btn-l{ border-color: var(--bd); color: var(--tx); }
+[data-theme="dark"] .btn-l:hover{ border-color: var(--bl); }
+[data-theme="dark"] .how-vis{ background: linear-gradient(135deg, rgba(26,45,66,0.9), rgba(33,23,58,0.9)); border: 1px solid var(--bd); color: var(--pu); }
+[data-theme="dark"] .hblob{ background: linear-gradient(135deg, rgba(26,45,66,0.8), rgba(33,23,58,0.8)); box-shadow: 0 0 60px rgba(137,195,245,0.08), 0 0 100px rgba(176,127,232,0.06); }
+[data-theme="dark"] .hblob img{ filter: brightness(.95) saturate(1.1); }
+[data-theme="dark"] .a-img{ background: linear-gradient(160deg, rgba(26,45,66,0.8), rgba(33,23,58,0.8)); box-shadow: 0 0 40px rgba(137,195,245,0.07); }
+[data-theme="dark"] .a-img img{ filter: brightness(.92) saturate(1.05); }
+[data-theme="dark"] .t-av{ background: linear-gradient(135deg, var(--bl), var(--pu)); }
+[data-theme="dark"] footer{ background: #08090f; border-top: 1px solid #1c2338; }
+[data-theme="dark"] #st{ box-shadow: 0 2px 12px rgba(0,0,0,.4); }
+[data-theme="dark"] .drawer{ background: #0e1119; }
+[data-theme="dark"] .tr{ background:#111520; }
+[data-theme="dark"] .tr:hover{ background:#151a2a; }
+[data-theme="dark"] .faq{ background:#0e1119; }
+[data-theme="dark"] .cta-final{ background: linear-gradient(135deg,rgba(26,45,66,0.7),rgba(33,23,58,0.7)); }
+[data-theme="dark"] .gallery{ background: #0e1119; }
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;transition:background .3s,color .3s}
+
+/* ── TRIANGLE ARROWS ── */
+.tri-l,.tri-r,.tri-up{font-size:.75rem;line-height:1;display:flex;align-items:center;justify-content:center;filter:invert(55%) sepia(80%) saturate(500%) hue-rotate(185deg) brightness(1.1)}
+.tri-l{transform:rotate(-90deg)}
+.tri-r{transform:rotate(90deg)}
+#st:hover .tri-up{filter:brightness(0) invert(1)}
+[data-theme="dark"] .tri-l,[data-theme="dark"] .tri-r,[data-theme="dark"] .tri-up{filter:invert(65%) sepia(80%) saturate(400%) hue-rotate(180deg) brightness(1.3)}
+
+/* ── SPLASH ── */
+#splash{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .6s,visibility .6s}
+#splash.hide{opacity:0;visibility:hidden;pointer-events:none}
+.sp-ring{position:relative;width:110px;height:110px;display:flex;align-items:center;justify-content:center;animation:popIn .6s cubic-bezier(.34,1.56,.64,1) both}
+.sp-ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.sp-ring circle{fill:none;stroke:var(--bd);stroke-width:2}
+.sp-ring .sp-arc{stroke:url(#ringGrad);stroke-width:2;stroke-linecap:round;stroke-dasharray:314;stroke-dashoffset:314;animation:ringFill 2.2s .4s ease forwards}
+@keyframes ringFill{to{stroke-dashoffset:0}}
+.sp-logo{width:88px;height:88px;border-radius:50%;overflow:hidden}
+.sp-logo img{width:100%;height:100%;object-fit:cover}
+.sp-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;letter-spacing:.04em;color:var(--tx);animation:fu .5s .3s both}
+.sp-sub{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);animation:fu .5s .45s both}
+@keyframes popIn{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:58px;padding:0 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(247,250,253,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);transition:background .3s}
+[data-theme="dark"] nav{background:rgba(11,13,20,.94)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo img{width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.logo-n{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--tx);white-space:nowrap}
+.nl{display:flex;gap:26px;list-style:none}
+.nl a{font-size:.78rem;color:var(--t2);text-decoration:none;transition:color .2s}
+.nl a:hover{color:var(--tx)}
+.ne{display:flex;align-items:center;gap:7px}
+.tbtn{width:28px;height:28px;border-radius:50%;border:1px solid var(--bd);background:transparent;cursor:pointer;font-size:.75rem;display:flex;align-items:center;justify-content:center;color:var(--t2);transition:border-color .2s}
+.tbtn:hover{border-color:var(--bl)}
+.ncta{font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;padding:8px 16px;border-radius:2px;background:var(--tx);color:var(--bg);transition:opacity .2s}
+.ncta:hover{opacity:.7}
+.burger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:4px}
+.burger span{display:block;width:17px;height:1.5px;background:var(--tx);border-radius:1px;transition:transform .3s,opacity .3s}
+.burger.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+.drawer{position:fixed;top:58px;left:0;right:0;z-index:490;background:var(--sf);border-bottom:1px solid var(--bd);padding:16px 24px 20px;transform:translateY(-110%);transition:transform .3s ease}
+.drawer.open{transform:translateY(0)}
+.drawer ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:14px}
+.drawer a{font-size:.86rem;color:var(--t2);text-decoration:none}
+.dcta{display:block;text-align:center;background:var(--tx);color:var(--bg);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;padding:10px;border-radius:2px}
+
+/* ── SHARED ── */
+.lbl{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bl);display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.lbl::before{content:'';width:14px;height:1px;background:var(--bl)}
+h2.ttl{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:500;line-height:1.15;margin-bottom:8px}
+h2.ttl em{font-style:italic;color:var(--pu)}
+.sub{font-size:.82rem;color:var(--t2);line-height:1.8;max-width:400px}
+.btn-f{background:var(--tx);color:var(--bg);font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;padding:12px 26px;border-radius:2px;display:inline-flex;align-items:center;transition:opacity .2s}
+.btn-f:hover{opacity:.7}
+.btn-l{background:transparent;color:var(--tx);font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;padding:12px 26px;border-radius:2px;border:1px solid var(--bd);display:inline-flex;align-items:center;transition:border-color .2s}
+.btn-l:hover{border-color:var(--bl)}
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
+.reveal.on{opacity:1;transform:translateY(0)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;padding:80px 40px 56px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.8vw,3.4rem);font-weight:500;line-height:1.1;margin-bottom:12px;animation:fu .6s .15s both}
+.h-title em{font-style:italic;color:var(--bl)}
+.h-desc{font-size:.84rem;color:var(--t2);line-height:1.8;max-width:360px;margin-bottom:24px;animation:fu .6s .28s both}
+.h-btns{display:flex;gap:9px;flex-wrap:wrap;animation:fu .6s .4s both}
+.h-tags{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px;animation:fu .6s .52s both}
+.h-tag{font-size:.7rem;color:var(--t3);display:flex;align-items:center;gap:4px}
+.h-tag::before{content:'–';color:var(--bl)}
+.hv{display:flex;justify-content:center;align-items:center;animation:fu .7s .15s both}
+.hblob{width:min(300px,70vw);aspect-ratio:1;border-radius:60% 40% 55% 45%/50% 60% 40% 50%;background:linear-gradient(135deg,var(--bl2),var(--pu2));display:flex;align-items:center;justify-content:center;animation:blob 7s ease-in-out infinite}
+@keyframes blob{0%,100%{border-radius:60% 40% 55% 45%/50% 60% 40% 50%}50%{border-radius:45% 55% 40% 60%/60% 40% 55% 45%;transform:translateY(-8px)}}
+.hblob img{width:58%;aspect-ratio:1;border-radius:50%;object-fit:cover}
+
+/* ── TICKER ── */
+.ticker{background:var(--tx);padding:9px 0;overflow:hidden}
+[data-theme="dark"] .ticker{background:linear-gradient(90deg,#1a2d42,#21173a,#1a2d42)}
+.tk-track{display:flex;gap:28px;white-space:nowrap;animation:marquee 22s linear infinite;width:max-content}
+.tk-i{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.tk-i::after{content:' ·';margin-left:28px;color:rgba(255,255,255,.12)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── PRODUCTS ── */
+.products{padding:64px 40px;background:var(--sf)}
+.ph{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;gap:20px;flex-wrap:wrap}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:6px;overflow:hidden}
+.pi{background:var(--sf);padding:20px 16px;transition:background .2s}
+.pi:hover{background:var(--bg)}
+.pi-n{font-size:.6rem;color:var(--t3);letter-spacing:.08em;margin-bottom:6px}
+.pi h3{font-size:.8rem;font-weight:500;margin-bottom:3px;line-height:1.3;font-family:'Cormorant Garamond',serif}
+.pi p{font-size:.72rem;color:var(--t2);line-height:1.5}
+
+/* ── ABOUT ── */
+.about{padding:64px 40px}
+.about-g{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px}
+.a-img{aspect-ratio:4/5;border-radius:10px;overflow:hidden;background:linear-gradient(160deg,var(--bl2),var(--pu2));display:flex;align-items:center;justify-content:center}
+.a-img img{width:62%;aspect-ratio:1;border-radius:50%;object-fit:cover}
+.a-text{display:flex;flex-direction:column;gap:10px}
+.a-text p{font-size:.82rem;color:var(--t2);line-height:1.8}
+.a-qt{border-left:2px solid var(--pu);padding:7px 12px;font-style:italic;font-size:.8rem;color:var(--t2);line-height:1.7}
+.a-stats{display:flex;gap:10px;margin-top:4px}
+.a-st{flex:1;padding:11px;border:1px solid var(--bd);border-radius:5px;text-align:center}
+.a-sn{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--pu)}
+.a-sl{font-size:.6rem;color:var(--t3);margin-top:1px;letter-spacing:.04em}
+
+/* ── HOW ── */
+.how{padding:64px 40px;background:var(--sf)}
+.how-g{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.how-vis{aspect-ratio:1;border-radius:10px;background:linear-gradient(135deg,var(--bl2),var(--pu2));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-style:italic;color:var(--pu);padding:24px;text-align:center;line-height:1.4}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--bd)}
+.step:last-child{border-bottom:none}
+.step-n{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:var(--t3);min-width:18px;padding-top:1px}
+.step h4{font-size:.8rem;font-weight:500;margin-bottom:2px}
+.step p{font-size:.74rem;color:var(--t2);line-height:1.6}
+
+/* ── TESTIMONIALS ── */
+.testi{padding:64px 40px}
+.testi-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;gap:12px}
+.t-ctrl{display:flex;gap:4px}
+.tctl{width:30px;height:30px;border-radius:50%;border:1px solid var(--bd);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s;padding:0;line-height:1;overflow:hidden}
+.tctl:hover{background:var(--tx);border-color:var(--tx)}
+.c-wrap{overflow:hidden}
+.c-track{display:flex;gap:12px;transition:transform .4s cubic-bezier(.4,0,.2,1);will-change:transform}
+.t-card{background:var(--sf);border:1px solid var(--bd);border-radius:6px;padding:18px;flex-shrink:0}
+.t-stars{font-size:.56rem;color:#f0b429;letter-spacing:2px;margin-bottom:8px}
+.t-q{font-size:.79rem;color:var(--t2);line-height:1.75;font-style:italic;margin-bottom:12px}
+.t-auth{display:flex;align-items:center;gap:8px}
+.t-av{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--bl),var(--pu));display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:600;color:#fff}
+.t-nm{font-size:.73rem;font-weight:500}
+.t-pr{font-size:.63rem;color:var(--t3);margin-top:1px}
+.c-dots{display:flex;gap:4px;margin-top:18px}
+.cdot{width:4px;height:4px;border-radius:50%;background:var(--bd);border:none;cursor:pointer;padding:0;transition:background .3s,width .3s}
+.cdot.on{background:var(--pu);width:12px;border-radius:2px}
+
+/* ── CONTACT ── */
+.contact{padding:64px 40px;background:var(--sf)}
+.c-list{display:flex;flex-direction:column;margin-top:6px}
+.c-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.c-row:last-child{border-bottom:none}
+.c-lbl{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);min-width:56px;padding-top:2px}
+.c-val{font-size:.8rem;color:var(--t2);line-height:1.6}
+.c-val a{color:var(--pu);text-decoration:none}
+
+/* ── FOOTER ── */
+footer{background:var(--tx);color:rgba(255,255,255,.3);padding:28px 40px 18px}
+.ft{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.06);flex-wrap:wrap;gap:14px}
+.ft-logo{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:8px;text-decoration:none}
+.ft-logo img{width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;opacity:.85}
+.ft-links{display:flex;gap:16px;flex-wrap:wrap}
+.ft-links a{font-size:.7rem;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:rgba(255,255,255,.65)}
+.ft-copy{padding-top:12px;font-size:.63rem}
+
+/* ── SCROLL TOP ── */
+#st{position:fixed;bottom:18px;right:18px;z-index:400;width:34px;height:34px;border-radius:50%;background:var(--sf);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:opacity .3s,visibility .3s,background .2s,transform .2s;padding:0}
+#st.on{opacity:1;visibility:visible}
+#st:hover{background:var(--tx);border-color:var(--tx);transform:translateY(-2px)}
+
+/* ── GALLERY ── */
+.gallery{padding:64px 40px;background:var(--sf)}
+.gal-carousel{position:relative;margin-top:28px}
+.gal-wrap{overflow:hidden;border-radius:6px}
+.gal-track{display:flex;gap:10px;transition:transform .4s cubic-bezier(.4,0,.2,1);will-change:transform}
+.gi{flex-shrink:0;border-radius:6px;overflow:hidden;aspect-ratio:1;cursor:pointer;position:relative}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .4s,filter .3s;filter:brightness(.97)}
+.gi:hover img{transform:scale(1.04);filter:brightness(1.03)}
+.gal-ctrl{display:flex;align-items:center;justify-content:space-between;margin-top:16px}
+.gal-dots{display:flex;gap:4px}
+.gdot{width:4px;height:4px;border-radius:50%;background:var(--bd);border:none;cursor:pointer;padding:0;transition:background .3s,width .3s}
+.gdot.on{background:var(--bl);width:12px;border-radius:2px}
+.gal-arrows{display:flex;gap:4px}
+.gactl{width:30px;height:30px;border-radius:50%;border:1px solid var(--bd);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s;padding:0;line-height:1;overflow:hidden}
+.gactl:hover{background:var(--tx);border-color:var(--tx)}
+
+/* ── LIGHTBOX ── */
+#lb{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+#lb.on{opacity:1;visibility:visible}
+#lb img{max-width:92vw;max-height:88vh;border-radius:6px;object-fit:contain;transform:scale(.9);transition:transform .3s}
+#lb.on img{transform:scale(1)}
+.lb-x{position:absolute;top:18px;right:22px;color:rgba(255,255,255,.6);font-size:1.4rem;cursor:pointer;background:none;border:none;line-height:1;transition:color .2s}
+.lb-x:hover{color:white}
+.lb-p,.lb-n{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:8px;display:flex;align-items:center;justify-content:center}
+.lb-p{left:16px}.lb-n{right:16px}
+.lb-p .tri-l,.lb-n .tri-r{font-size:1.2rem;filter:invert(100%)}
+
+/* ── TRUST ── */
+.trust{padding:64px 40px}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:6px;overflow:hidden;margin-top:28px}
+.tr{background:var(--sf);padding:22px 18px;transition:background .2s}
+.tr:hover{background:var(--bg)}
+.tr-ic{font-size:1.1rem;margin-bottom:10px;display:block}
+.tr h4{font-size:.8rem;font-weight:500;margin-bottom:4px;font-family:'Cormorant Garamond',serif}
+.tr p{font-size:.72rem;color:var(--t2);line-height:1.55}
+
+/* ── FAQ ── */
+.faq{padding:64px 40px;background:var(--sf)}
+.faq-list{margin-top:28px;max-width:680px}
+.faq-item{border-bottom:1px solid var(--bd)}
+.faq-q{width:100%;background:none;border:none;padding:14px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;gap:12px}
+.faq-q span{font-size:.82rem;font-weight:500;color:var(--tx);line-height:1.4}
+.faq-ic{color:var(--t3);font-size:.7rem;transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-ic{transform:rotate(45deg)}
+.faq-a{font-size:.78rem;color:var(--t2);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:14px}
+
+/* ── CTA FINAL ── */
+.cta-final{padding:72px 40px;text-align:center;background:linear-gradient(135deg,var(--bl2),var(--pu2))}
+.cta-final h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:500;margin-bottom:10px;line-height:1.2}
+.cta-final h2 em{font-style:italic;color:var(--pu)}
+.cta-final p{font-size:.84rem;color:var(--t2);max-width:420px;margin:0 auto 28px;line-height:1.8}
+.cta-final .btn-f{margin:0 auto}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .hero,.about-g,.how-g{grid-template-columns:1fr;gap:28px}
+  .hero{text-align:center;padding:72px 28px 48px;min-height:auto}
+  .h-desc,.sub{max-width:100%}
+  .h-btns,.h-tags{justify-content:center}
+  .hv{order:-1}
+  .hblob{width:200px}
+  .pg{grid-template-columns:repeat(2,1fr)}
+  .products,.about,.how,.testi,.contact,.gallery,.trust,.faq,.cta-final{padding:52px 28px}
+  nav{padding:0 24px}
+  footer{padding:20px 24px 14px}
+  .ph{flex-direction:column;align-items:flex-start}
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .nl,.ncta{display:none}
+  .burger{display:flex}
+  .pg{grid-template-columns:1fr 1fr}
+  .a-stats{flex-direction:column}
+}
+@media(max-width:480px){
+  .h-title{font-size:2rem}
+  .pg{grid-template-columns:1fr}
+  .trust-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="sp-ring">
+    <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#6eaee7"/>
+          <stop offset="100%" stop-color="#7b3fb5"/>
+        </linearGradient>
+      </defs>
+      <circle cx="55" cy="55" r="50"/>
+      <circle class="sp-arc" cx="55" cy="55" r="50"/>
+    </svg>
+    <div class="sp-logo"><img src="logo.jpg" alt=""/></div>
+  </div>
+  <div class="sp-name">World Perfect</div>
+  <div class="sp-sub">Personalizados</div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <img src="logo.jpg" alt=""/>
+    <span class="logo-n">World Perfect</span>
+  </a>
+  <ul class="nl">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#como-funciona">Como Funciona</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div class="ne">
+    <button class="tbtn" id="tbtn">🌙</button>
+    <a class="ncta" href="#contato">Pedir</a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="drawer" id="drawer">
+  <ul>
+    <li><a href="#sobre" onclick="cd()">Sobre</a></li>
+    <li><a href="#produtos" onclick="cd()">Produtos</a></li>
+    <li><a href="#como-funciona" onclick="cd()">Como Funciona</a></li>
+    <li><a href="#depoimentos" onclick="cd()">Depoimentos</a></li>
+    <li><a href="#contato" onclick="cd()">Contato</a></li>
+  </ul>
+  <a class="dcta" href="#contato" onclick="cd()">Pedir agora</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div>
+    <h1 class="h-title">Transforme momentos<br>em <em>lembranças únicas</em></h1>
+    <p class="h-desc">Produtos personalizados com seu nome, foto ou frase. Feitos com carinho para cada ocasião especial.</p>
+    <div class="h-btns">
+      <a class="btn-f" href="#contato">Pedir agora</a>
+      <a class="btn-l" href="#como-funciona">Como funciona</a>
+    </div>
+    <div class="h-tags">
+      <span class="h-tag">Atendimento pelo WhatsApp</span>
+      <span class="h-tag">Envio para todo o Brasil</span>
+      <span class="h-tag">100% personalizado</span>
+    </div>
+  </div>
+  <div class="hv">
+    <div class="hblob"><img src="logo.jpg" alt="World Perfect"/></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="tk-track">
+    <span class="tk-i">Canecas</span><span class="tk-i">Blusas</span><span class="tk-i">Quadros</span>
+    <span class="tk-i">Garrafas</span><span class="tk-i">Kits</span><span class="tk-i">Lembranças</span>
+    <span class="tk-i">Todo o Brasil</span><span class="tk-i">Feito com amor</span>
+    <span class="tk-i">Canecas</span><span class="tk-i">Blusas</span><span class="tk-i">Quadros</span>
+    <span class="tk-i">Garrafas</span><span class="tk-i">Kits</span><span class="tk-i">Lembranças</span>
+    <span class="tk-i">Todo o Brasil</span><span class="tk-i">Feito com amor</span>
+  </div>
+</div>
+
+<!-- PRODUTOS -->
+<section class="products" id="produtos">
+  <div class="ph reveal">
+    <div>
+      <div class="lbl">Produtos</div>
+      <h2 class="ttl">O que <em>personalizamos</em></h2>
+    </div>
+    <a class="btn-f" href="#contato">Solicitar orçamento</a>
+  </div>
+  <div class="pg reveal">
+    <div class="pi"><div class="pi-n">01</div><h3>Canecas</h3><p>Com foto, nome ou frase especial.</p></div>
+    <div class="pi"><div class="pi-n">02</div><h3>Blusas</h3><p>Estampas exclusivas sob medida.</p></div>
+    <div class="pi"><div class="pi-n">03</div><h3>Garrafas</h3><p>Presentes práticos e cheios de significado.</p></div>
+    <div class="pi"><div class="pi-n">04</div><h3>Quadros</h3><p>Eternize memórias com arte decorativa.</p></div>
+    <div class="pi"><div class="pi-n">05</div><h3>Kits Personalizados</h3><p>Combinações únicas para surpreender.</p></div>
+    <div class="pi"><div class="pi-n">06</div><h3>Lembranças</h3><p>Para aniversários, formaturas e festas.</p></div>
+    <div class="pi"><div class="pi-n">07</div><h3>Datas Especiais</h3><p>Dia das Mães, Namorados, Natal e mais.</p></div>
+    <div class="pi"><div class="pi-n">08</div><h3>Azulejos</h3><p>Arte decorativa para qualquer ambiente.</p></div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="about" id="sobre">
+  <div class="about-g">
+    <div class="a-img reveal">
+      <img src="logo.jpg" alt="World Perfect"/>
+    </div>
+    <div class="a-text reveal">
+      <div class="lbl">Sobre</div>
+      <h2 class="ttl">Nascemos para <em>eternizar momentos</em></h2>
+      <p>A World Perfect é especializada em produtos personalizados, localizados em Pacatuba, região de Fortaleza. Cada peça é criada com carinho e atenção aos detalhes.</p>
+      <div class="a-qt">"Ajudar as pessoas a expressar sentimentos e eternizar os momentos mais importantes da vida."</div>
+      <div class="a-stats">
+        <div class="a-st"><div class="a-sn">70+</div><div class="a-sl">Clientes</div></div>
+        <div class="a-st"><div class="a-sn">100%</div><div class="a-sl">Personalizado</div></div>
+        <div class="a-st"><div class="a-sn">BR</div><div class="a-sl">Envio nacional</div></div>
+      </div>
+      <a class="btn-f" href="#contato" style="margin-top:4px;align-self:flex-start">Entrar em contato</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="how" id="como-funciona">
+  <div class="how-g">
+    <div class="how-vis reveal">Feito com<br>muito<br>amor</div>
+    <div class="reveal">
+      <div class="lbl">Como funciona</div>
+      <h2 class="ttl">Seu pedido em <em>3 passos</em></h2>
+      <div class="steps">
+        <div class="step"><div class="step-n">01</div><div><h4>Escolha o produto</h4><p>Veja o catálogo e escolha o produto ideal para o seu presente.</p></div></div>
+        <div class="step"><div class="step-n">02</div><div><h4>Envie sua arte ou foto</h4><p>Mande pelo WhatsApp a foto ou frase — cuidamos do design.</p></div></div>
+        <div class="step"><div class="step-n">03</div><div><h4>Receba em casa</h4><p>Produzimos com cuidado e enviamos para qualquer cidade do Brasil.</p></div></div>
+      </div>
+      <a class="btn-f" href="https://wa.me/5585999999999" style="margin-top:18px">Pedir pelo WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="gallery" id="galeria">
+  <div class="reveal">
+    <div class="lbl">Galeria</div>
+    <h2 class="ttl">Trabalhos <em>reais</em></h2>
+    <p class="sub">Cada peça feita com dedicação. Veja alguns dos nossos produtos.</p>
+  </div>
+  <div class="gal-carousel reveal">
+    <div class="gal-wrap">
+      <div class="gal-track" id="galTrack">
+        <div class="gi"><img src="Canecaspersonalizadas.jpg" alt="Canecas personalizadas"/></div>
+        <div class="gi"><img src="Canecasembrulhadas.jpg" alt="Canecas embrulhadas"/></div>
+        <div class="gi"><img src="Almofadapersonalizada.jpg" alt="Almofada personalizada"/></div>
+        <div class="gi"><img src="canecastar.jpg" alt="Canecas e azulejo Star"/></div>
+        <div class="gi"><img src="canecacasa.jpg" alt="Caneca com foto de casamento"/></div>
+        <div class="gi"><img src="canecamiranha.jpg" alt="Caneca Homem-Aranha"/></div>
+        <div class="gi"><img src="canecafriends.jpg" alt="Canecas Friends"/></div>
+        <div class="gi"><img src="natal.jpg" alt="Canecas de Natal"/></div>
+        <div class="gi"><img src="harrypotter.jpg" alt="Caneca Harry Potter"/></div>
+        <div class="gi"><img src="canecaeazulejo.jpg" alt="Caneca e azulejo personalizados"/></div>
+        <div class="gi"><img src="kitpersonalizado.webp" alt="Kit personalizado"/></div>
+        <div class="gi"><img src="personalizado.jpg" alt="Produto personalizado"/></div>
+        <div class="gi"><img src="quadromusical.jpg" alt="Quadro musical Spotify"/></div>
+      </div>
+    </div>
+    <div class="gal-ctrl">
+      <div class="gal-dots" id="galDots"></div>
+      <div class="gal-arrows">
+        <button class="gactl" id="galPrev" aria-label="Anterior"><span class="tri-l">🔺</span></button>
+        <button class="gactl" id="galNext" aria-label="Próximo"><span class="tri-r">🔺</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="trust" id="diferenciais">
+  <div class="reveal">
+    <div class="lbl">Por que confiar</div>
+    <h2 class="ttl">O que nos <em>diferencia</em></h2>
+  </div>
+  <div class="trust-grid reveal">
+    <div class="tr"><span class="tr-ic">—</span><h4>Arte inclusa</h4><p>Você não precisa saber fazer design. Enviamos a arte personalizada com seu pedido.</p></div>
+    <div class="tr"><span class="tr-ic">—</span><h4>Qualidade garantida</h4><p>Materiais de qualidade e impressão nítida. Produto enviado só após sua aprovação.</p></div>
+    <div class="tr"><span class="tr-ic">—</span><h4>Atendimento direto</h4><p>Fale diretamente com quem produz pelo WhatsApp — sem robôs, sem enrolação.</p></div>
+    <div class="tr"><span class="tr-ic">—</span><h4>Envio para todo o Brasil</h4><p>Enviamos para qualquer cidade com embalagem cuidadosa e rastreamento.</p></div>
+    <div class="tr"><span class="tr-ic">—</span><h4>Pagamento facilitado</h4><p>Pix, cartão de crédito ou dinheiro. Parcelamos no cartão conforme necessidade.</p></div>
+    <div class="tr"><span class="tr-ic">—</span><h4>Embalagem com carinho</h4><p>Cada pedido é embalado especialmente — perfeito para presentear sem precisar embalar.</p></div>
+    <div class="tr"><span class="tr-ic">—</span><h4>70+ clientes satisfeitos</h4><p>Anos de experiência com clientes que voltam e indicam. Prova real do nosso trabalho.</p></div>
+    <div class="tr"><span class="tr-ic">—</span><h4>Pedido unitário aceito</h4><p>Não precisa comprar em quantidade. Fazemos desde 1 peça com o mesmo capricho.</p></div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="testi" id="depoimentos">
+  <div class="testi-top reveal">
+    <div>
+      <div class="lbl">Depoimentos</div>
+      <h2 class="ttl">O que dizem <em>nossos clientes</em></h2>
+    </div>
+    <div class="t-ctrl">
+      <button class="tctl" id="tPrev" aria-label="Anterior"><span class="tri-l">🔺</span></button>
+      <button class="tctl" id="tNext" aria-label="Próximo"><span class="tri-r">🔺</span></button>
+    </div>
+  </div>
+  <div class="c-wrap">
+    <div class="c-track" id="cTrack">
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Me indicaram, pedi e já chegou super rápido. Amei demais — indico pra todo mundo!"</p><div class="t-auth"><div class="t-av">M</div><div><div class="t-nm">@mercadao_online</div><div class="t-pr">Caneca personalizada</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Adorei a blusa e o quadro fica LINDO na sala! Capricham em cada detalhe — produto incrível!"</p><div class="t-auth"><div class="t-av">A</div><div><div class="t-nm">@almirgadelha</div><div class="t-pr">Blusa + quadro decorativo</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Obrigadoooo aos envolvidos! Caneca incrível, entrega rápida e embalagem super caprichada."</p><div class="t-auth"><div class="t-av">E</div><div><div class="t-nm">@eduardo.al_</div><div class="t-pr">Caneca com foto</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Quadros lindos na parede e kit incrível! Vários pedidos e sempre impecável. Confiança total!"</p><div class="t-auth"><div class="t-av">P</div><div><div class="t-nm">@pamelasolero & @fernandofr18</div><div class="t-pr">Quadros + kit personalizado</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Que perfeição de caneca! Cada detalhe ficou maravilhoso — arte, cores, tudo certinho."</p><div class="t-auth"><div class="t-av">G</div><div><div class="t-nm">@gabrielakatriny</div><div class="t-pr">Caneca personalizada</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Amei demais! Obrigada pelo carinho, atenção e capricho. Excelente trabalho!"</p><div class="t-auth"><div class="t-av">N</div><div><div class="t-nm">@nanda.sousa.a</div><div class="t-pr">Caneca + quadro</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Tô apaixonada em cada detalhe! O quadro musical ficou tão lindo — superou tudo."</p><div class="t-auth"><div class="t-av">W</div><div><div class="t-nm">@wannyawerlia</div><div class="t-pr">Quadro musical</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"T-Shirt da melhor loja! Que perfeição de caneca também — já faça sua encomenda!"</p><div class="t-auth"><div class="t-av">A</div><div><div class="t-nm">@anelissa.emi</div><div class="t-pr">Blusa + caneca</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Amo! Azulejo, camisa e embalagem feita com carinho. Tudo impecável — os melhores!"</p><div class="t-auth"><div class="t-av">M</div><div><div class="t-nm">@marcilioantonio</div><div class="t-pr">Azulejo + camisa</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Chegou com embalagem 'Feito com Amor' — deu pra sentir o carinho antes de abrir!"</p><div class="t-auth"><div class="t-av">I</div><div><div class="t-nm">@igorsouzza_</div><div class="t-pr">Produto personalizado</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Eu amo esse cuidado! O porta-retrato ficou lindo, com muito afeto. Inesquecível!"</p><div class="t-auth"><div class="t-av">T</div><div><div class="t-nm">@thaynarajane</div><div class="t-pr">Porta-retrato polaroid</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Parceria com razão — qualidade, criatividade e capricho em cada peça. Únicos!"</p><div class="t-auth"><div class="t-av">M</div><div><div class="t-nm">@mahlys</div><div class="t-pr">Almofada + produtos</div></div></div></div>
+    </div>
+  </div>
+  <div class="c-dots" id="cDots"></div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="reveal">
+    <div class="lbl">FAQ</div>
+    <h2 class="ttl">Perguntas <em>frequentes</em></h2>
+  </div>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <button class="faq-q"><span>Quanto tempo leva para ficar pronto?</span><span class="faq-ic">+</span></button>
+      <div class="faq-a">Depende do produto. Canecas e blusas simples costumam ficar prontas em 2 a 5 dias úteis. Kits e produtos mais elaborados podem levar um pouco mais. Combinamos o prazo no momento do pedido.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>Como funciona o pagamento?</span><span class="faq-ic">+</span></button>
+      <div class="faq-a">Aceitamos Pix, cartão de crédito e dinheiro. O pagamento é realizado após confirmarmos os detalhes do pedido pelo WhatsApp.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>Posso pedir só 1 peça?</span><span class="faq-ic">+</span></button>
+      <div class="faq-a">Sim! Aceitamos pedidos unitários. Você pode pedir apenas 1 caneca, 1 blusa ou qualquer produto — o capricho é sempre o mesmo.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>Preciso enviar a arte pronta?</span><span class="faq-ic">+</span></button>
+      <div class="faq-a">Não. Você pode enviar só a foto ou ideia, e a gente cria a arte para você sem custo adicional. Se já tiver uma arte pronta, também usamos.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>Vocês enviam para outra cidade?</span><span class="faq-ic">+</span></button>
+      <div class="faq-a">Sim, enviamos para todo o Brasil pelos Correios ou transportadora. O frete é calculado no momento do pedido conforme o CEP de destino.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>E se o produto chegar com defeito?</span><span class="faq-ic">+</span></button>
+      <div class="faq-a">Se o produto chegar danificado ou com defeito de produção, realizamos a troca. Entre em contato pelo WhatsApp com foto do problema e resolvemos.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contact" id="contato">
+  <div class="reveal">
+    <div class="lbl">Contato</div>
+    <h2 class="ttl">Vamos criar algo <em>especial?</em></h2>
+    <p class="sub" style="margin-bottom:24px">Atendemos pelo WhatsApp de forma rápida. Escolha o produto, envie sua asssrsssste — nós cuidamos do resto.</p>
+    <div class="c-list" style="max-width:400px">
+      <div class="c-row"><span class="c-lbl"ß>Local</span><span class="c-val">Pacatuba, CE</span></div>
+      <div class="c-row"><span class="c-lbl">WhatsApp</span><span class="c-val"><a href="https://wa.me/558589569271">(85) 98956-9271</a></span></div>
+      <div class="c-row"><span class="c-lbl">Entrega</span><span class="c-val">Todo o Brasil</span></div>
+    </div>
+    <a class="btn-f" href="https://wa.me/5585999999999" style="margin-top:24px">Falar no WhatsApp</a>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final reveal">
+  <h2>Pronto para criar seu <em>presente perfeito?</em></h2>
+  <p>Mande uma mensagem agora e receba seu produto personalizado com carinho, qualidade e no prazo combinado.</p>
+  <a class="btn-f" href="https://wa.me/5585999999999">Falar no WhatsApp</a>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lb">
+  <button class="lb-x" id="lbX">✕</button>
+  <button class="lb-p" id="lbP"><span class="tri-l">🔺</span></button>
+  <img id="lbImg" src="" alt=""/>
+  <button class="lb-n" id="lbN"><span class="tri-r">🔺</span></button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <a class="ft-logo" href="#"><img src="logo.jpg" alt=""/>World Perfect</a>
+    <div class="ft-links">
+      <a href="#sobre">Sobre</a><a href="#produtos">Produtos</a>
+      <a href="#depoimentos">Depoimentos</a><a href="#contato">Contato</a>
+    </div>
+  </div>
+  <div class="ft-copy">© 2025 World Perfect Personalizados. Todos os direitos reservados.</div>
+</footer>
+
+<button id="st" title="Voltar ao topo"><span class="tri-up">🔺</span></button>
+
+<script>
+// Splash
+window.addEventListener('load', () => setTimeout(() => document.getElementById('splash').classList.add('hide'), 2400));
+
+// Theme
+const html = document.documentElement;
+const tb = document.getElementById('tbtn');
+const sv = localStorage.getItem('wp-t') || 'light';
+html.setAttribute('data-theme', sv);
+tb.textContent = sv === 'dark' ? '☀️' : '🌙';
+tb.addEventListener('click', () => {
+  const n = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', n); tb.textContent = n === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('wp-t', n);
+});
+
+// Burger
+const bg = document.getElementById('burger'), dr = document.getElementById('drawer');
+bg.addEventListener('click', () => { bg.classList.toggle('open'); dr.classList.toggle('open'); });
+function cd() { bg.classList.remove('open'); dr.classList.remove('open'); }
+document.addEventListener('click', e => { if (!bg.contains(e.target) && !dr.contains(e.target)) cd(); });
+
+// Scroll top
+const st = document.getElementById('st');
+window.addEventListener('scroll', () => st.classList.toggle('on', window.scrollY > 380));
+st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Reveal
+const ro = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('on'), i * 55); ro.unobserve(e.target); } });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// Testimonials carousel
+const track = document.getElementById('cTrack');
+const dotsW = document.getElementById('cDots');
+const cards = [...track.querySelectorAll('.t-card')];
+let cur = 0;
+const vis = () => window.innerWidth <= 640 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+const pages = () => Math.ceil(cards.length / vis());
+function resize() {
+  const v = vis(), gap = 12;
+  const w = (track.parentElement.offsetWidth - gap * (v - 1)) / v;
+  cards.forEach(c => { c.style.minWidth = w + 'px'; c.style.width = w + 'px'; });
+}
+function buildDots() {
+  dotsW.innerHTML = '';
+  for (let i = 0; i < pages(); i++) {
+    const d = document.createElement('button');
+    d.className = 'cdot' + (i === cur ? ' on' : '');
+    d.onclick = () => go(i);
+    dotsW.appendChild(d);
+  }
+}
+function go(idx) {
+  cur = Math.max(0, Math.min(idx, pages() - 1));
+  const gap = 12, w = cards[0].offsetWidth + gap;
+  track.style.transform = `translateX(-${cur * vis() * w}px)`;
+  document.querySelectorAll('.cdot').forEach((d, i) => d.classList.toggle('on', i === cur));
+}
+function init() { cur = 0; resize(); buildDots(); go(0); }
+init();
+window.addEventListener('resize', init);
+document.getElementById('tPrev').addEventListener('click', () => go(cur - 1));
+document.getElementById('tNext').addEventListener('click', () => go(cur + 1));
+let sx = 0;
+track.addEventListener('touchstart', e => sx = e.touches[0].clientX, { passive: true });
+track.addEventListener('touchend', e => { const d = sx - e.changedTouches[0].clientX; if (Math.abs(d) > 44) go(d > 0 ? cur + 1 : cur - 1); });
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// Gallery carousel
+const galTrack = document.getElementById('galTrack');
+const galDotsW = document.getElementById('galDots');
+const galCards = [...galTrack.querySelectorAll('.gi')];
+let galCur = 0;
+const galVis = () => window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : window.innerWidth <= 1024 ? 3 : 4;
+const galPages = () => Math.ceil(galCards.length / galVis());
+function galResize() {
+  const v = galVis(), gap = 10;
+  const w = (galTrack.parentElement.offsetWidth - gap * (v - 1)) / v;
+  galCards.forEach(c => { c.style.minWidth = w + 'px'; c.style.width = w + 'px'; });
+}
+function galBuildDots() {
+  galDotsW.innerHTML = '';
+  for (let i = 0; i < galPages(); i++) {
+    const d = document.createElement('button');
+    d.className = 'gdot' + (i === galCur ? ' on' : '');
+    d.onclick = () => galGo(i);
+    galDotsW.appendChild(d);
+  }
+}
+function galGo(idx) {
+  galCur = Math.max(0, Math.min(idx, galPages() - 1));
+  const gap = 10, w = galCards[0].offsetWidth + gap;
+  galTrack.style.transform = `translateX(-${galCur * galVis() * w}px)`;
+  document.querySelectorAll('.gdot').forEach((d, i) => d.classList.toggle('on', i === galCur));
+}
+function galInit() { galCur = 0; galResize(); galBuildDots(); galGo(0); }
+galInit();
+window.addEventListener('resize', galInit);
+document.getElementById('galPrev').addEventListener('click', () => galGo(galCur - 1));
+document.getElementById('galNext').addEventListener('click', () => galGo(galCur + 1));
+let gsx = 0;
+galTrack.addEventListener('touchstart', e => gsx = e.touches[0].clientX, { passive: true });
+galTrack.addEventListener('touchend', e => { const d = gsx - e.changedTouches[0].clientX; if (Math.abs(d) > 44) galGo(d > 0 ? galCur + 1 : galCur - 1); });
+
+// Lightbox
+const lbEl = document.getElementById('lb');
+const lbImg = document.getElementById('lbImg');
+const giImgs = [...document.querySelectorAll('.gi img')];
+const srcs = giImgs.map(i => i.src);
+let lbCur = 0;
+function lbOpen(idx) { lbCur = idx; lbImg.src = srcs[idx]; lbEl.classList.add('on'); document.body.style.overflow = 'hidden'; }
+function lbClose() { lbEl.classList.remove('on'); document.body.style.overflow = ''; }
+giImgs.forEach((img, i) => img.parentElement.addEventListener('click', () => lbOpen(i)));
+document.getElementById('lbX').addEventListener('click', lbClose);
+document.getElementById('lbP').addEventListener('click', () => lbOpen((lbCur - 1 + srcs.length) % srcs.length));
+document.getElementById('lbN').addEventListener('click', () => lbOpen((lbCur + 1) % srcs.length));
+lbEl.addEventListener('click', e => { if (e.target === lbEl) lbClose(); });
+document.addEventListener('keydown', e => {
+  if (!lbEl.classList.contains('on')) return;
+  if (e.key === 'Escape') lbClose();
+  if (e.key === 'ArrowLeft') lbOpen((lbCur - 1 + srcs.length) % srcs.length);
+  if (e.key === 'ArrowRight') lbOpen((lbCur + 1) % srcs.length);
+});
+</script>
+</body>
+</html>
